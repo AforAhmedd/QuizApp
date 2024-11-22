@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QuizList from './QuizList'; 
 import CreateQuiz from './CreateQuiz'; 
-import './Quizzes.css';
+import './Styling/createQuiz.css';
 function Quizzes() {
   const [quizzes, setQuizzes] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -12,6 +12,7 @@ function Quizzes() {
       setQuizzes(JSON.parse(storedQuizzes));
     }
   }, []);
+
 
   const addQuiz = (newQuiz) => {
     const updatedQuizzes = [...quizzes, { id: quizzes.length + 1, ...newQuiz }];
@@ -52,7 +53,6 @@ const onAddQuizClick=() => {
     </div>
   );
 }
-
 
 
 

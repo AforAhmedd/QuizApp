@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './ViewQuizModal.css';  // Import your CSS styles here
+import './Styling/ViewQuizModal.css';  // Import your CSS styles here
 
 const ViewQuizModal = ({ quizData, onClose }) => {
   // Add the useEffect hook here

@@ -1,6 +1,5 @@
 import React from "react";
-import "./modal.css";
-
+import "./Styling/modal.css";
 const Modal = ({ title, isOpen, onClose, body }) => {
   if (!isOpen) return null; // Don't render if the modal isn't open
 

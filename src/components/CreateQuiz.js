@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 import TextField from "./Fields/TextField";
 import OptionsField from "./Fields/OptionsField";
-import "./createQuiz.css";
+import "./Styling/createQuiz.css";
 
 const CreateQuiz = ({ onClose, onSubmit }) => {
   const [quizData, setQuizData] = useState({
@@ -13,7 +13,6 @@ const CreateQuiz = ({ onClose, onSubmit }) => {
     questions: [{ id: 1, text: "", options: ["", "", "", ""] }],
   });
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-
   const predefinedTimes = [15, 30, 60].map((t) => `${t} mins`);
   const quizTypes = ["MCQs", "Short Q/A", "Filling the Blanks"];
 
@@ -80,24 +79,27 @@ const CreateQuiz = ({ onClose, onSubmit }) => {
   };
 
   const handleCancelQuiz = () => {
-    setShowConfirmationModal(true); // Show confirmation modal
+    setShowConfirmationModal(true);
   };
 
   const handleSaveAsDraft = () => {
-    const storedDraftQuizzes = JSON.parse(localStorage.getItem('draftQuizzes')) || [];
-    const updatedDraftQuizzes = [...storedDraftQuizzes, { id: storedDraftQuizzes.length + 1, ...quizData }];
-  
-    localStorage.setItem('draftQuizzes', JSON.stringify(updatedDraftQuizzes));
+    const storedDraftQuizzes =
+      JSON.parse(localStorage.getItem("draftQuizzes")) || [];
+    const updatedDraftQuizzes = [
+      ...storedDraftQuizzes,
+      { id: storedDraftQuizzes.length + 1, ...quizData },
+    ];
+
+    localStorage.setItem("draftQuizzes", JSON.stringify(updatedDraftQuizzes));
     console.log("Quiz saved as draft:", quizData);
-  
-    setShowConfirmationModal(false); // Close the confirmation modal
-    onClose(); // Close the main modal
+
+    setShowConfirmationModal(false);
+    onClose();
   };
-  
 
   const handleDiscardQuiz = () => {
-    setShowConfirmationModal(false); // Close the confirmation modal
-    onClose(); // Close the main modal
+    setShowConfirmationModal(false);
+    onClose();
   };
 
   const body = (
@@ -180,10 +182,9 @@ const CreateQuiz = ({ onClose, onSubmit }) => {
     <>
       <Modal
         title="Create New Quiz"
-        isOpen={true} // Always open when this component is rendered
+        isOpen={true}
         onClose={() => {
-          setShowConfirmationModal(true)
-          // onClose()
+          setShowConfirmationModal(true);
         }}
         body={body}
       />

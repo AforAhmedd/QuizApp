@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./QuizList.css";
+import "./Styling/QuizList.css";
 import ViewQuizModal from "./ViewQuizModal";
 
 const QuizList = ({ 

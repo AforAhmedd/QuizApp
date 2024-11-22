@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QuizList from './QuizList'; 
-import './Quizzes.css';
+import './Styling/Quizzes.css';
 
 function DraftQuizzes() {
   const [draftQuizzes, setDraftQuizzes] = useState([]);

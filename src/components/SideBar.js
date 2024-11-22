@@ -1,5 +1,5 @@
 import React from 'react';
-import './Sidebar.css';
+import './Styling/Sidebar.css';
 
 const Sidebar = ({ onMenuSelect }) => {
   return (
