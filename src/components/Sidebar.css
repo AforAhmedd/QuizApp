@@ -1,0 +1,38 @@
+.sidebar {
+    width: 250px;
+    height: 100vh; /* Full height */
+    background-color: #6b0e08; /* Light background */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Add a shadow */
+    padding: 20px;
+    position: fixed; /* Keeps it on screen permanently */
+    top: 0;
+    left: 0;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #faf7f7;
+  }
+  
+  .sidebar-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar-option {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    color: #ebebeb;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #9e5858f8;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar-option:hover {
+    background-color: #f7f7f7f8; /* Light gray hover effect */
+    color: #300303;
+  }
+  

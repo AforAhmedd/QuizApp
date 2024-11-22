@@ -1,0 +1,52 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --bg-color: #f8f9fa;
+    --border-color: #dee2e6;
+    --text-color: #212529;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--bg-color);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.close-button {
+    font-size: 1.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: black; /* Default text color */
+    background-color: transparent; /* Default background */
+    border: none; /* Optional: remove border if it's a button */
+}
+
+.close-button:hover {
+    color: white; /* Text color on hover */
+    background-color: red; /* Background color on hover */
+}

@@ -1,0 +1,175 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --bg-color: #f8f9fa;
+    --border-color: #dee2e6;
+    --text-color: #212529;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--bg-color);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.close-button {
+    font-size: 1.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: black; /* Default text color */
+    background-color: transparent; /* Default background */
+    border: none; /* Optional: remove border if it's a button */
+  }
+  
+  .close-button:hover {
+    color: white; /* Text color on hover */
+    background-color: red; /* Background color on hover */
+  }
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    width: 90%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    resize: none;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 49, 148, 0.25);
+}
+
+.scrollable-section {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 1rem;
+    margin-top: 1rem;
+}
+
+.question-container {
+    margin-bottom: 1.25rem;
+}
+
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+}
+
+.title-field, .question-field {
+    height: 50px;
+}
+
+.description-field {
+    height: 100px;
+}
+
+.option-field {
+    width: 45%;
+    height: 30px;
+}
+
+.add-question-button {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.add-question-button:hover {
+    background-color: #0071b3;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    color: #fff;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    border-color: #004c99;
+}
+
+.btn:disabled {
+    color: #6c757d;
+    background-color: #e9ecef;
+    border-color: #e9ecef;
+    cursor: not-allowed;
+}
+.quiz-description {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.questions-preview {
+    margin-top: 1rem;
+}
+
+.question-preview {
+    margin-bottom: 1.25rem;
+}
+
+.options-preview {
+    padding-left: 1rem;
+    color: var(--secondary-color);
+}
