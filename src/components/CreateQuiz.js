@@ -14,6 +14,7 @@ const CreateQuiz = ({ onClose, onSubmit }) => {
   });
   
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [IsSaving,setIsSaving]=useState(false);
   const predefinedTimes = [15, 30, 60].map((t) => `${t} mins`);
   const quizTypes = ["MCQs", "Short Q/A", "Filling the Blanks"];
 
@@ -83,21 +84,38 @@ const CreateQuiz = ({ onClose, onSubmit }) => {
     setShowConfirmationModal(true);
   };
 
-  const handleSaveAsDraft = () => {
-    const storedDraftQuizzes =
-      JSON.parse(localStorage.getItem("draftQuizzes")) || [];
-    const updatedDraftQuizzes = [
-      ...storedDraftQuizzes,
-      { id: storedDraftQuizzes.length + 1, ...quizData },
-    ];
-
-    localStorage.setItem("draftQuizzes", JSON.stringify(updatedDraftQuizzes));
-    console.log("Quiz saved as draft:", quizData);
-
-    setShowConfirmationModal(false);
-    onClose();
+  const handleSaveAsDraft = async () => {
+    setIsSaving(true); // Indicate that the saving process has started
+  
+    try {
+      const response = await fetch("http://localhost:3000/draft-quizzes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(quizData), // Send the quiz data to the backend
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to save draft quiz");
+      }
+  
+      const savedDraftQuiz = await response.json();
+      console.log("Quiz saved as draft:", savedDraftQuiz);
+  
+      // Optionally, you can update the frontend state or provide feedback to the user
+      setShowConfirmationModal(false); // Close the modal
+      onClose(); // Close the modal from the parent component
+  
+      alert("Quiz saved as draft successfully!");
+    } catch (error) {
+      console.error("Error saving draft quiz:", error);
+      alert("Failed to save draft quiz. Please try again.");
+    } finally {
+      setIsSaving(false); // Reset the saving state
+    }
   };
-
+  
   const handleDiscardQuiz = () => {
     setShowConfirmationModal(false);
     onClose();

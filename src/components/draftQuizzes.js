@@ -8,11 +8,23 @@ function DraftQuizzes() {
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
+  // Fetch draft quizzes from the backend
   useEffect(() => {
-    const storedDraftQuizzes = localStorage.getItem("draftQuizzes");
-    if (storedDraftQuizzes) {
-      setDraftQuizzes(JSON.parse(storedDraftQuizzes));
-    }
+    const fetchDraftQuizzes = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/draft-quizzes");
+        if (!response.ok) {
+          throw new Error("Failed to fetch draft quizzes");
+        }
+        const data = await response.json();
+        setDraftQuizzes(data);
+      } catch (error) {
+        console.error("Error fetching draft quizzes:", error);
+        alert("Failed to load draft quizzes. Please try again.");
+      }
+    };
+
+    fetchDraftQuizzes();
   }, []);
 
   const handleEditQuiz = (quiz) => {
@@ -20,27 +32,57 @@ function DraftQuizzes() {
     setIsEditing(true);
   };
 
-  const handleSaveQuiz = (quiz) => {
-    const storedQuizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
-    localStorage.setItem("quizzes", JSON.stringify([...storedQuizzes, quiz]));
+  // Publish a draft quiz
+  const handleSaveQuiz = async (quiz) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/draft-quizzes/${quiz._id}/publish`,
+        {
+          method: "PUT",
+        }
+      );
 
-    const updatedDraftQuizzes = draftQuizzes.filter((q) => q.id !== quiz.id);
-    setDraftQuizzes(updatedDraftQuizzes);
-    localStorage.setItem("draftQuizzes", JSON.stringify(updatedDraftQuizzes));
+      if (!response.ok) {
+        throw new Error("Failed to publish quiz");
+      }
 
-    setIsEditing(false);
-    setSelectedQuiz(null);
+      setDraftQuizzes((prevQuizzes) =>
+        prevQuizzes.filter((q) => q._id !== quiz._id)
+      );
+      alert("Quiz published successfully!");
+      setIsEditing(false);
+    } catch (error) {
+      console.error("Error publishing quiz:", error);
+      alert("Failed to publish quiz. Please try again.");
+    }
   };
 
-  const handleSaveAsDraft = (quiz) => {
-    const updatedDraftQuizzes = draftQuizzes.map((q) =>
-      q.id === quiz.id ? quiz : q
-    );
-    setDraftQuizzes(updatedDraftQuizzes);
-    localStorage.setItem("draftQuizzes", JSON.stringify(updatedDraftQuizzes));
+  // Save changes to a draft quiz
+  const handleSaveAsDraft = async (quiz) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/draft-quizzes/${quiz._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(quiz),
+        }
+      );
 
-    setIsEditing(false);
-    setSelectedQuiz(null);
+      if (!response.ok) {
+        throw new Error("Failed to update draft quiz");
+      }
+
+      const updatedQuiz = await response.json();
+      setDraftQuizzes((prevQuizzes) =>
+        prevQuizzes.map((q) => (q._id === updatedQuiz._id ? updatedQuiz : q))
+      );
+      alert("Draft quiz updated successfully!");
+      setIsEditing(false);
+    } catch (error) {
+      console.error("Error updating draft quiz:", error);
+      alert("Failed to update draft quiz. Please try again.");
+    }
   };
 
   return (
