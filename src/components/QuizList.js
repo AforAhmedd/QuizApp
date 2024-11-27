@@ -14,7 +14,7 @@ const QuizList = ({
     if (onButtonClick) {
       onButtonClick(quiz);
     } else {
-      setSelectedQuiz(quiz); // Fallback: show modal if no onButtonClick provided
+      setSelectedQuiz(quiz); 
     }
   };
 

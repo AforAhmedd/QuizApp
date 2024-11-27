@@ -103,16 +103,15 @@ const CreateQuiz = ({ onClose, onSubmit }) => {
       const savedDraftQuiz = await response.json();
       console.log("Quiz saved as draft:", savedDraftQuiz);
   
-      // Optionally, you can update the frontend state or provide feedback to the user
-      setShowConfirmationModal(false); // Close the modal
-      onClose(); // Close the modal from the parent component
+      setShowConfirmationModal(false);
+      onClose(); 
   
       alert("Quiz saved as draft successfully!");
     } catch (error) {
       console.error("Error saving draft quiz:", error);
       alert("Failed to save draft quiz. Please try again.");
     } finally {
-      setIsSaving(false); // Reset the saving state
+      setIsSaving(false); 
     }
   };
   
