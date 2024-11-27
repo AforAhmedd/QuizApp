@@ -12,6 +12,7 @@ const CreateQuiz = ({ onClose, onSubmit }) => {
     quizType: "MCQs",
     questions: [{ id: 1, text: "", options: ["", "", "", ""] }],
   });
+  
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const predefinedTimes = [15, 30, 60].map((t) => `${t} mins`);
   const quizTypes = ["MCQs", "Short Q/A", "Filling the Blanks"];
